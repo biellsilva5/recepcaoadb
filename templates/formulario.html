@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conectados - Recepção</title>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- iOS -->
+    <link rel="apple-touch-icon"                       href="{{ url_for('static', filename='images/icon-96.png') }}">
+    <meta name="apple-mobile-web-app-capable"          content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection"                      content="telephone=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href=" {{url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}} ">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/jquery-ui/jquery-ui.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script>
+        function  abrirCamera(){
+            document.getElementById("photofile1").click()
+        }
+    </script>
+        
+</head>
+<body>
+
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" enctype="multipart/form-data" id="signup-form" class="signup-form">
+                        
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            {%if nome%}
+                            <input type="text" class="form-input" value="{{nome}}" name="name" id="name" />
+                            {%else%}
+                            <input type="text" class="form-input" name="name" id="name" />
+                            {%endif%}
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group form-icon">
+                                <label for="birth_date">Data de Nascimento</label>
+                                <input type="text" class="form-input" name="birth_date" id="birth_date" placeholder="MM-DD-YYYY" />
+                            </div>
+                            <div class="form-radio">
+                                <label for="gender">Gênero</label>
+                                <div class="form-flex">
+                                    <input type="radio" name="gender" value="male" id="male" checked="checked" />
+                                    <label for="male">Masculino</label>
+    
+                                    <input type="radio" name="gender" value="female" id="female" />
+                                    <label for="female">Feminino</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone_number">Numero de Telefone</label>
+                                <input type="number" class="form-input" name="phone_number" id="phone_number" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-input" name="email" id="email"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-radio">
+                                <label for="casado">Casado(a)?</label>
+                                <div class="form-flex">
+                                    <input type="radio" name="casado" value="sim" id="sim_cas"/>
+                                    <label for="sim_cas">Sim</label>
+    
+                                    <input type="radio" name="casado" value="nao" id="nao_cas" checked='checked' />
+                                    <label for="nao_cas">Não</label>
+                                </div>
+                            </div>
+                            <div class="form-radio">
+                                <label for="batizado">Batizado?</label>
+                                <div class="form-flex">
+                                    <input type="radio" name="batizado" value="sim" id="sim_bat"/>
+                                    <label for="sim_bat">Sim</label>
+    
+                                    <input type="radio" name="batizado" value="nao" id="nao_bat" checked='checked' />
+                                    <label for="nao_bat">Não</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-radio">
+                                <label for="frequenta_igreja">Frequenta Alguma Igreja?</label>
+                                <div class="form-flex">
+                                    <input type="radio" name="frequenta_igreja" value="sim" id="sim"/>
+                                    <label for="sim">Sim</label>
+    
+                                    <input type="radio" name="frequenta_igreja" value="nao" id="nao" checked='checked' />
+                                    <label for="nao">Não</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="qual_igreja">Qual Igreja?</label>
+                                <input type="text" class="form-input" name="qual_igreja" placeholder="Deixe vazio caso não tenha" id="qual_igreja"/>
+                            </div>
+                        </div>
+                        <div class="form-radio">
+                            <label for="sua_primeira_vez">Sua primeira vez aqui?</label>
+                            <div class="form-flex">
+                                <input type="radio" name="sua_primeira_vez" value="sim" id="sim_pri"/>
+                                <label for="sim_pri">Sim</label>
+
+                                <input type="radio" name="sua_primeira_vez" value="nao" id="nao_pri" checked='checked' />
+                                <label for="nao_pri">Não</label>
+                            </div>
+                            <div class="form-group">
+                                <a onclick="abrirCamera()" id='photofile' class="btn btn-success"><i class="fas fa-camera"></i></a>
+                                <input type="file" id='photofile1' name="photofile" accept="image/*" capture="camera" class="btn" style="display:none"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Enviar"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

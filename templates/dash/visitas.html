@@ -1,0 +1,38 @@
+{% extends 'dash/base_dash.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tabela1" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Data</th>
+                    <th><i class="far fa-question-circle"></i></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {%for visita in visitas%}
+                  <tr>
+                    <td>{{buscarBanco(id=visita['idRef'])['nome']}}</td>
+                    <td>{{visita['data'].strftime('%d/%m/%Y')}}</td>
+                    <td> <a class="text-primary" href=""><i class="fas fa-user-edit"></i></a> / <a class='text-danger'href=""> <i class="fas fa-trash-alt"></i> </a></td>
+                  </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+              
+        </div>
+    </div>
+
+    
+{% endblock content %}
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $('#tabela1').DataTable();
+    });
+
+</script>
+{% endblock script %}

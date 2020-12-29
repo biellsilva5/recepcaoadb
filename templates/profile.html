@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conectados - Recepção</title>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+    <!-- iOS -->
+    <link rel="apple-touch-icon"                       href="{{ url_for('static', filename='images/icon-96.png') }}">
+    <meta name="apple-mobile-web-app-capable"          content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection"                      content="telephone=no">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href=" {{url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}} ">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/jquery-ui/jquery-ui.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    
+</head>
+<body>
+
+    <div class="main">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row d-flex justify-content-center" >
+                        <div class="col-md-6">
+                            <div class="flash alert alert-success alert-dismissible fade show "  role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ message }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="adc-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <p style="font-family: Montserrat; text-transform: uppercase; font-size: 20px; color: black"> {{dados['nome']}} </p>
+                                
+                                <img src="{{dados['img']}}" >
+                            </div>
+                            <div class="col-md-6">
+                                {%if view %}
+                                <strong>Data de Nascimento: </strong> <p>{{dados['birth_date']}}</p>
+                                <strong>Telefone: </strong><p>{{dados['phone_number']}}</p>
+                                <strong>Batizado: </strong><p>{{dados['batizado']}}</p>
+                                <strong>Primeira vez: </strong><p>{{dados['sua_primeira_vez']}}</p>
+                                <strong>Frequenta Igreja: </strong><p>{{dados['frequenta_igreja']}}</p>
+                                <strong>Qual?: </strong><p>{{dados['qual_igreja']}}</p>
+                                <a class="btn btn-primary btn-sm float-right" href="{{url_for('profile', id=dados['_id'])}}">Voltar</a>
+                                {% else %}
+                                <p class="float-right">Numero de visitas: {{visitas.count()}}</p>
+                                <div class="d-flex h-100 float-right">
+                                    
+                                    <div class="align-self-center">     
+                                        <a class="btn btn-lg btn-success float-right" href="/insere/visita/{{dados['_id']}}">Adicionar Visita</a>
+                                        <a class="btn mt-2 btn-sm float-right" style="background-color: #1da0f2; color: #fff;" href="{{url_for('profile', id=dados['_id'], view='True')}}">Visualizar Perfil</a>
+                                        <div class="clear"></div>
+                                        <a style="font-size: 13px;" class="float-right btn" href="{{url_for('busca')}}">Voltar</a>
+                                    </div>
+                                    
+                                </div>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- JS -->
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+<script src="{{url_for('static', filename='service-worker.js')}}"></script>
+</html>

@@ -33,7 +33,7 @@ class Funcoes(object):
     def insereVisita(self, id):
         dicio = {
             'idRef': str(id),
-            'data': datetime.now()
+            'data': datetime.datetime.now()
             }
         inserted = visitas.insert_one(dicio)
         if inserted.inserted_id:

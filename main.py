@@ -159,7 +159,6 @@ def profile(id):
     return render_template('profile.html', dados = pessoa, view=view, visitas=visitas)
 
 @app.route('/insere/visita/<id>')
-@requerAutenticacao
 def inserirVisita(id):
     inserindo = func.insereVisita(str(id))
     flash("Visita Adicionada")

@@ -5,7 +5,7 @@ import base64
 
 def marcadagua(img):
     basedir = os.getcwd()
-    waterpath = os.path.join(basedir, 'app', 'static', 'imgs_visita', 'll.png')
+    waterpath = os.path.join(basedir, 'static', 'imgs_visita', 'll.png')
     
     buffer = BytesIO()
     im = Image.open(BytesIO(base64.b64decode(img)))

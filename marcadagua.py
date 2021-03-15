@@ -3,6 +3,7 @@ import os
 from io import BytesIO
 import base64
 
+# resolução do tablet camera frontal 1616x1212
 def marcadagua(img):
     basedir = os.getcwd()
     waterpath = os.path.join(basedir, 'static', 'imgs_visita', 'll.png')
@@ -10,7 +11,7 @@ def marcadagua(img):
     buffer = BytesIO()
     im = Image.open(BytesIO(base64.b64decode(img)))
     width, height = im.size
-    resized = im.thumbnail( (1080,1920), Image.ANTIALIAS)
+    resized = im.thumbnail( (1616,1212), Image.ANTIALIAS)
 
     water = Image.open(waterpath)
     resized = water.thumbnail( (500, 500 ), Image.ANTIALIAS )

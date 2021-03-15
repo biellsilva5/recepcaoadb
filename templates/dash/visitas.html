@@ -14,7 +14,7 @@
                 <tbody>
                     {%for visita in visitas%}
                   <tr>
-                    <td>{{buscarBanco(id=visita['idRef'])['nome']}}</td>
+                    <td> <a href="{{url_for('profile', id=buscarBanco(id=visita['idRef'])['_id'] )}}">{{buscarBanco(id=visita['idRef'])['nome'] }}</a></td>
                     <td>{{visita['data'].strftime('%d/%m/%Y')}}</td>
                     <td> <a class="text-primary" href=""><i class="fas fa-user-edit"></i></a> / <a class='text-danger'href=""> <i class="fas fa-trash-alt"></i> </a></td>
                   </tr>

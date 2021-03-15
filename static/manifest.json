@@ -27,5 +27,5 @@
     ],
     "start_url": "/",
     "display": "standalone",
-    "orientation": "portrait"
+    "orientation": "any"
   }

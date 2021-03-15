@@ -69,7 +69,7 @@
                                         <a class="btn btn-lg btn-success float-right" href="/insere/visita/{{dados['_id']}}">Adicionar Visita</a>
                                         <a class="btn mt-2 btn-sm float-right" style="background-color: #1da0f2; color: #fff;" href="{{url_for('profile', id=dados['_id'], view='True')}}">Visualizar Perfil</a>
                                         <div class="clear"></div>
-                                        <a style="font-size: 13px;" class="float-right btn" href="{{url_for('busca')}}">Voltar</a>
+                                        <a style="font-size: 13px;" class="float-right btn" href="{{url_referrer}}">Voltar</a>
                                     </div>
                                     
                                 </div>
@@ -80,7 +80,9 @@
                 </div>
             </div>
         </section>
-
+        {% block navinf %}
+            
+        {% endblock navinf %}
     </div>
     <!-- JS -->
     <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>

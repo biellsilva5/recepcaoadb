@@ -39,16 +39,16 @@
                         <div class="form-group">
                             <label for="name">Nome</label>
                             {%if nome%}
-                            <input type="text" class="form-input" value="{{nome}}" name="name" id="name" />
+                            <input type="text" class="form-input" value="{{nome}}" name="name" id="name" autocomplete="off" />
                             {%else%}
-                            <input type="text" class="form-input" name="name" id="name" />
+                            <input type="text" class="form-input" name="name" id="name" autocomplete="off"/>
                             {%endif%}
 
                         </div>
                         <div class="form-row">
                             <div class="form-group form-icon">
                                 <label for="birth_date">Data de Nascimento</label>
-                                <input type="text" class="form-input" name="birth_date" id="birth_date" placeholder="MM-DD-YYYY" />
+                                <input type="text" class="form-input" name="birth_date" id="birth_date" placeholder="MM-DD-YYYY" autocomplete="off"/>
                             </div>
                             <div class="form-radio">
                                 <label for="gender">Gênero</label>
@@ -64,11 +64,11 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="phone_number">Numero de Telefone</label>
-                                <input type="number" class="form-input" name="phone_number" id="phone_number" />
+                                <input type="number" class="form-input" name="phone_number" id="phone_number" autocomplete="off" />
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-input" name="email" id="email"/>
+                                <input type="email" class="form-input" name="email" id="email" autocomplete="off"/>
                             </div>
                         </div>
                         <div class="form-row">
@@ -106,7 +106,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="qual_igreja">Qual Igreja?</label>
-                                <input type="text" class="form-input" name="qual_igreja" placeholder="Deixe vazio caso não tenha" id="qual_igreja"/>
+                                <input type="text" class="form-input" name="qual_igreja" placeholder="Deixe vazio caso não tenha" id="qual_igreja" autocomplete="off"/>
                             </div>
                         </div>
                         <div class="form-radio">
@@ -120,7 +120,7 @@
                             </div>
                             <div class="form-group">
                                 <a onclick="abrirCamera()" id='photofile' class="btn btn-success"><i class="fas fa-camera"></i></a>
-                                <input type="file" id='photofile1' name="photofile" accept="image/*" capture="camera" class="btn" style="display:none"/>
+                                <input type="file" id='photofile1' name="photofile" accept="image/*" capture="camera" class="btn" style="display:none" required/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -130,7 +130,9 @@
                 </div>
             </div>
         </section>
-
+{% block navinf %}
+    
+{% endblock navinf %}
     </div>
 
     <!-- JS -->

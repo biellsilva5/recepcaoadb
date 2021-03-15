@@ -148,6 +148,7 @@ def retBusca():
 def profile(id):
     pessoa = None
     visitas = None
+    url_referrer = request.referrer
     try:
         pessoa = func.buscarBanco(id)
         pessoa['_id'] = id
@@ -156,7 +157,7 @@ def profile(id):
 
     visitas = func.buscarVisita(id)
     view = request.args.get('view')
-    return render_template('profile.html', dados = pessoa, view=view, visitas=visitas)
+    return render_template('profile.html', url_referrer = url_referrer, dados = pessoa, view=view, visitas=visitas)
 
 @app.route('/insere/visita/<id>')
 def inserirVisita(id):
@@ -198,7 +199,7 @@ def formulario():
         inserted = recepcao.insert_one(dicio)
         visitar = func.insereVisita(inserted.inserted_id)
 
-        return render_template('formulario.html')
+        return redirect(url_for('busca'))
 
 @app.route('/admin')
 @requerAutenticacao
@@ -210,6 +211,9 @@ def admin():
 @requerAutenticacao
 def adVisita():
     visitas = func.buscarAllVisitas()
+
+    for visita in visitas:
+        visita["_id"] = str(visita['_id'])
     return render_template('dash/visitas.html', visitas = visitas, buscarBanco=func.buscarBanco)
 
 @app.route('/admin/usuarios', methods=['GET', 'POST'])
@@ -279,4 +283,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
